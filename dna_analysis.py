@@ -96,6 +96,19 @@ def find_palindromes(sequence, min_length=20):
     return palindromes
 
 
+def find_repeat_sequences(sequences, min_length=20):
+    """Find the top 5 most frequent repeat sequences across all input sequences."""
+    repeat_counts = Counter()
+
+    logging.info("Finding repeat sequences...")
+    for seq in sequences:
+        for i in range(len(seq) - min_length + 1):
+            substr = seq[i : i + min_length]
+            repeat_counts[substr] += 1
+
+    return repeat_counts
+
+
 def analyse_sequences(sequences):
     """
     Analyse a list of DNA sequences and generate a summary of various statistics and patterns.
@@ -117,15 +130,14 @@ def analyse_sequences(sequences):
     for i, seq in enumerate(sequences):
         logging.debug(f"Processing sequence {i+1}/{len(sequences)}")
         # GC content
-        gc_count = seq.count("G") + seq.count("C")
-        gc_contents.append(gc_count / len(seq))
+        gc_contents.append(calculate_gc_content(seq))
 
         # Dinucleotide frequencies
-        overall_dinucleotide_freq.update(seq[i : i + 2] for i in range(len(seq) - 1))
+        overall_dinucleotide_freq.update(calculate_dinucleotide_frequencies(seq))
 
         # k-mers
         for k in kmers:
-            kmers[k].update(seq[i : i + k] for i in range(len(seq) - k + 1))
+            kmers[k].update(dict(find_most_common_kmers(seq, k)))
 
         # Palindromes
         palindromes.extend((i, p) for p in find_palindromes(seq))
@@ -192,23 +204,3 @@ def analyse_sequences(sequences):
 
     logging.info("Analysis complete.")
     return summary
-
-
-def find_repeat_sequences(sequences, min_length=20):
-    """Find the top 5 most frequent repeat sequences across all input sequences."""
-    repeat_counts = Counter()
-
-    logging.info("Finding repeat sequences...")
-    for seq in sequences:
-        for i in range(len(seq) - min_length + 1):
-            substr = seq[i : i + min_length]
-            repeat_counts[substr] += 1
-
-    return repeat_counts
-
-
-def calculate_nucleotide_composition(sequences):
-    """Calculate the overall nucleotide composition of all sequences."""
-    total_count = sum(len(seq) for seq in sequences)
-    composition = Counter("".join(sequences))
-    return {base: count / total_count for base, count in composition.items()}

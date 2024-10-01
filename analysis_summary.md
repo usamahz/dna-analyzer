@@ -12,9 +12,9 @@
        {'TG': 10189, 'GG': 23858, 'GA': 9852, 'AG': 11642, 'GT': 7495, 'GC': 19296, 'CG': 14783, 'CC': 22310, 'CT': 11369, 'AT': 9757, 'TC': 9394, 'CA': 9240, 'TT': 12561, 'AA': 12353, 'AC': 6679, 'TA': 9014, 'EC': 1, 'NG': 1, 'OG': 1, 'MC': 1, 'EG': 1, 'HC': 1, 'UG': 1, 'NC': 1}
     
     3. 5 Most Common k-mers:
-       3-mers: [('GGG', 9636), ('CCC', 8835), ('GGC', 7640), ('GCC', 7490), ('CGG', 6283)]
-       4-mers: [('GGGG', 3805), ('CCCC', 3436), ('GGGC', 3320), ('GCCC', 3098), ('GGCC', 2904)]
-       5-mers: [('GGGGC', 1529), ('GGGGG', 1376), ('GGGCG', 1348), ('GCCCC', 1334), ('CGGGG', 1324)]
+       3-mers: [('GGG', 7561), ('CCC', 6059), ('GGC', 3875), ('GCC', 3747), ('GCG', 3382)]
+       4-mers: [('GGGG', 2121), ('CCCC', 1778), ('GGGC', 1149), ('GCGG', 1036), ('GGCG', 991)]
+       5-mers: [('GGGGG', 470), ('GGGGC', 458), ('CCCCC', 406), ('CGGGG', 391), ('GGCGG', 344)]
     
     4. Palindromes, above 20 base pairs in length that include at least 3 of the four bases (A,C,T,G):
        Total found: 11
